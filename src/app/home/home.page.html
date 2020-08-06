@@ -1,0 +1,29 @@
+<ion-header>
+  <button ion-button color="secondary">Secondary</button>
+  <ion-toolbar>
+    <ion-title>
+      TÉCNICO SIREMU
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
+    <ion-button (click)="clear()">
+    
+        Limpiar
+    </ion-button>
+     <!-- Segment in content -->
+  <ion-segment [(ngModel)]="relationship" color="primary" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="Firma">
+      Firma
+    </ion-segment-button>
+    <ion-segment-button value="Siguiente">
+      Siguiente
+    </ion-segment-button>
+  </ion-segment>
+  
+</ion-content>
+
+
+
