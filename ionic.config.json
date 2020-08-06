@@ -1,0 +1,7 @@
+{
+  "name": "ionic4-angular-paint-firm",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
