@@ -1,29 +1,46 @@
-<ion-header>
-  <button ion-button color="secondary">Secondary</button>
-  <ion-toolbar>
-    <ion-title>
-      TÉCNICO SIREMU
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<!--<ion-header>-->
+<!--  <button ion-button color="secondary">Secondary</button>-->
+<!--  <ion-toolbar>-->
+<!--    <ion-title>-->
+<!--      TÉCNICO SIREMU-->
+<!--    </ion-title>-->
+<!--  </ion-toolbar>-->
+<!--</ion-header>-->
 
-<ion-content>
-    <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
-    <ion-button (click)="clear()">
-    
-        Limpiar
-    </ion-button>
-     <!-- Segment in content -->
-  <ion-segment [(ngModel)]="relationship" color="primary" (ionChange)="segmentChanged($event)">
-    <ion-segment-button value="Firma">
-      Firma
-    </ion-segment-button>
-    <ion-segment-button value="Siguiente">
-      Siguiente
-    </ion-segment-button>
-  </ion-segment>
-  
-</ion-content>
+<!--<ion-content>-->
+<!--    <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>-->
 
+<!--    <ion-button (click)="clear()">-->
+<!--        Limpiar-->
+<!--    </ion-button>-->
+<!--  <ion-segment [(ngModel)]="relationship" color="primary" (ionChange)="segmentChanged($event)">-->
+<!--    <ion-segment-button value="Firma">-->
+<!--      Firma-->
+<!--    </ion-segment-button>-->
+<!--    <ion-segment-button value="Siguiente">-->
+<!--      Siguiente-->
+<!--    </ion-segment-button>-->
+<!--  </ion-segment>-->
+<!--  -->
+<!--</ion-content>-->
+
+<ion-tabs>
+    <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="colegio">
+            <ion-icon name="md-school"></ion-icon>
+            <ion-label>Colegio</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="siremu">
+            <ion-icon name="ios-people"></ion-icon>
+            <ion-label>Siremu</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="eba">
+            <ion-icon name="map"></ion-icon>
+            <ion-label>EBA</ion-label>
+        </ion-tab-button>
+    </ion-tab-bar>
+</ion-tabs>
 
 

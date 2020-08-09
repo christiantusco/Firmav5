@@ -9,22 +9,22 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 export class HomePage {
   @ViewChild(SignaturePad) signaturePad: SignaturePad;
 
-  private signaturePadOptions: Object = { 
+  private signaturePadOptions: Object = {
     'maxWidth':1,
     'minWidth': 1,
     'canvasWidth': 350,
     'canvasHeight': 300
   };
 
-  drawStart(){
+  drawStart() {
     console.log('drawStart');
   }
 
-  drawComplete(){
+  drawComplete() {
     console.log(this.signaturePad.toDataURL());
   }
 
-  clear(){
+  clear() {
     this.signaturePad.clear();
   }
 }
