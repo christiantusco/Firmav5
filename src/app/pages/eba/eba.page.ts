@@ -1,5 +1,6 @@
 import { Component, OnInit , ViewChild} from '@angular/core';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-eba',
@@ -8,7 +9,7 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 })
 export class EbaPage {
 
-  // constructor() { }
+  constructor( private alertCtrl: AlertController ) { }
   //
   // ngOnInit() {
   // }
@@ -31,6 +32,30 @@ export class EbaPage {
 
   clear() {
     this.signaturePad.clear();
+  }
+
+  createPrompt() {
+    this.alertCtrl.create({
+      header: 'Observaciones',
+      inputs: [{
+        placeholder: 'Ingrese sus observaciones',
+        name: 'text'
+      }],
+      buttons: [{
+        text: 'OK',
+        handler: (data) => {
+          alert(data.text);
+        }
+      }, {
+        text: 'Cancel',
+        handler: () => {
+          // alert('User cancelled');
+        }
+      }
+      ]
+    }).then((promptElement) => {
+      promptElement.present();
+    });
   }
 
 }
