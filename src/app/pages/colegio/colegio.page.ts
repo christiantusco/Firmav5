@@ -1,6 +1,7 @@
 import { Component, OnInit , ViewChild} from '@angular/core';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { AlertController } from '@ionic/angular';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-colegio',
@@ -9,7 +10,9 @@ import { AlertController } from '@ionic/angular';
 })
 export class ColegioPage {
 
-  constructor( private alertCtrl: AlertController ) { }
+  firma: any = '';
+
+  constructor( private alertCtrl: AlertController, private service: UserService ) { }
   //
   // ngOnInit() {
   // }
@@ -29,14 +32,16 @@ export class ColegioPage {
   }
 
   drawComplete() {
-    console.log(this.signaturePad.toDataURL());
+    // console.log(this.signaturePad.toDataURL());
+    this.firma = this.signaturePad.toDataURL();
   }
 
   clear() {
     this.signaturePad.clear();
   }
 
-  createPrompt() {
+  createPrompt( nombre, ci, codigoBoleta ) {
+
     this.alertCtrl.create({
       header: 'Observaciones',
       inputs: [{
@@ -44,12 +49,12 @@ export class ColegioPage {
         name: 'text'
       }],
       buttons: [{
-        text: 'OK',
+        text: 'Enviar',
         handler: (data) => {
-          alert(data.text);
+          this.enviarFirma(nombre.value, ci.value, codigoBoleta.value, this.firma, data);
         }
       }, {
-          text: 'Cancel',
+          text: 'Cancelar',
           handler: () => {
             // alert('User cancelled');
           }
@@ -58,6 +63,22 @@ export class ColegioPage {
     }).then((promptElement) => {
       promptElement.present();
     });
+  }
+
+  enviarFirma(nombre, ci, codigoBoleta, imagen, observaciones) {
+    let object = {
+      Nombre: nombre,
+      CI: ci,
+      CodigoBoleta: codigoBoleta,
+      Imagen: imagen,
+      Observaciones: observaciones.text,
+      Fecha: new Date()
+    }
+
+    this.service.enviarFirmaColegio(object).subscribe(resp => {
+      console.log('Respuesta: ', resp );
+    });
+
   }
 
 }
