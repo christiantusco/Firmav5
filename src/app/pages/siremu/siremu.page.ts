@@ -1,6 +1,7 @@
 import { Component, OnInit , ViewChild} from '@angular/core';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { AlertController } from '@ionic/angular';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-siremu',
@@ -9,7 +10,9 @@ import { AlertController } from '@ionic/angular';
 })
 export class SiremuPage {
 
-  constructor( private alertCtrl: AlertController ) { }
+  firma: any = '';
+
+  constructor( private alertCtrl: AlertController, private service: UserService ) { }
   //
   // ngOnInit() {
   // }
@@ -35,7 +38,7 @@ export class SiremuPage {
     this.signaturePad.clear();
   }
 
-  createPrompt() {
+  createPrompt(nombre, ci, codigoBoleta) {
     this.alertCtrl.create({
       header: 'Observaciones',
       inputs: [{
@@ -45,7 +48,7 @@ export class SiremuPage {
       buttons: [{
         text: 'OK',
         handler: (data) => {
-          alert(data.text);
+          this.enviarFirma(nombre.value, ci.value, codigoBoleta.value, this.firma, data);
         }
       }, {
         text: 'Cancel',
@@ -57,6 +60,22 @@ export class SiremuPage {
     }).then((promptElement) => {
       promptElement.present();
     });
+  }
+
+  enviarFirma(nombre, ci, codigoBoleta, imagen, observaciones) {
+    let object = {
+      Nombre: nombre,
+      CI: ci,
+      CodigoBoleta: codigoBoleta,
+      Imagen: imagen,
+      Observaciones: observaciones.text,
+      Fecha: new Date()
+    }
+
+    this.service.eviarFirmaSiremu(object).subscribe(resp => {
+      console.log('Respuesta: ', resp);
+    });
+
   }
 
 }
