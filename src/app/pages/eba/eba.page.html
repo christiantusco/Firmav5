@@ -1,29 +1,29 @@
 <ion-header>
 
   <ion-toolbar>
-    <ion-grid>
-      <ion-row>
+<!--    <ion-grid>-->
+<!--      <ion-row>-->
 
-        <ion-col>
-          <ion-item>
-            <ion-label position="floating" >
-              <ion-badge color="primary">Nombre:</ion-badge>
-            </ion-label>
-            <ion-input #nombre ></ion-input>
-          </ion-item>
-        </ion-col>
+<!--        <ion-col>-->
+<!--          <ion-item>-->
+<!--            <ion-label position="floating" >-->
+<!--              <ion-badge color="primary">Nombre:</ion-badge>-->
+<!--            </ion-label>-->
+<!--            <ion-input #nombre ></ion-input>-->
+<!--          </ion-item>-->
+<!--        </ion-col>-->
 
-        <ion-col>
-          <ion-item>
-            <ion-label position="floating" >
-              <ion-badge color="primary">C.I:</ion-badge>
-            </ion-label>
-            <ion-input #ci ></ion-input>
-          </ion-item>
-        </ion-col>
+<!--        <ion-col>-->
+<!--          <ion-item>-->
+<!--            <ion-label position="floating" >-->
+<!--              <ion-badge color="primary">C.I:</ion-badge>-->
+<!--            </ion-label>-->
+<!--            <ion-input #ci ></ion-input>-->
+<!--          </ion-item>-->
+<!--        </ion-col>-->
 
-      </ion-row>
-    </ion-grid>
+<!--      </ion-row>-->
+<!--    </ion-grid>-->
 
   </ion-toolbar>
 
@@ -49,7 +49,7 @@
           Limpiar
         </ion-button>
         <ion-button
-                (click)="createPrompt(nombre, ci, codigoBoleta)"
+                (click)="createPrompt(codigoBoleta)"
                 expand="block"
                 color="medium">
           Enviar

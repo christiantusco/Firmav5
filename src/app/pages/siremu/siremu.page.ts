@@ -38,7 +38,7 @@ export class SiremuPage {
     this.signaturePad.clear();
   }
 
-  createPrompt(nombre, ci, codigoBoleta) {
+  createPrompt(codigoBoleta) {
     this.alertCtrl.create({
       header: 'Observaciones',
       inputs: [{
@@ -48,7 +48,7 @@ export class SiremuPage {
       buttons: [{
         text: 'OK',
         handler: (data) => {
-          this.enviarFirma(nombre.value, ci.value, codigoBoleta.value, this.firma, data);
+          this.enviarFirma(codigoBoleta.value, this.firma, data);
         }
       }, {
         text: 'Cancel',
@@ -62,10 +62,8 @@ export class SiremuPage {
     });
   }
 
-  enviarFirma(nombre, ci, codigoBoleta, imagen, observaciones) {
+  enviarFirma(codigoBoleta, imagen, observaciones) {
     let object = {
-      Nombre: nombre,
-      CI: ci,
       CodigoBoleta: codigoBoleta,
       Imagen: imagen,
       Observaciones: observaciones.text,
