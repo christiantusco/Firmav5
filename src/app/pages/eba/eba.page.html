@@ -61,7 +61,11 @@
           <ion-label position="floating" >
             <ion-badge color="secondary">Nro.Boleta</ion-badge>
           </ion-label>
-          <ion-input #codigoBoleta ></ion-input>
+          <ion-input
+                  [value]="global.codigoBoleta"
+                  disabled="true"
+                  #codigoBoleta
+          ></ion-input>
         </ion-item>
       </ion-col>
 

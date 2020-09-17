@@ -2,17 +2,20 @@ import { Component, OnInit , ViewChild} from '@angular/core';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { AlertController } from '@ionic/angular';
 import {UserService} from '../../services/user.service';
+import { Global } from '../global';
+import { Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-siremu',
   templateUrl: './siremu.page.html',
   styleUrls: ['./siremu.page.scss'],
 })
+@Injectable()
 export class SiremuPage {
-
+  global = Global;
   firma: any = '';
 
-  constructor( private alertCtrl: AlertController, private service: UserService ) { }
+  constructor( private alertCtrl: AlertController, private service: UserService, ) { }
   //
   // ngOnInit() {
   // }

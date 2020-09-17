@@ -1,14 +1,22 @@
+import { Injectable } from '@angular/core';
 import { Component, OnInit , ViewChild} from '@angular/core';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { AlertController } from '@ionic/angular';
 import {UserService} from '../../services/user.service';
+import { Global } from '../global';
 
 @Component({
   selector: 'app-colegio',
   templateUrl: './colegio.page.html',
   styleUrls: ['./colegio.page.scss'],
 })
+
+@Injectable()
 export class ColegioPage {
+
+  // public nombre: string;
+  // public ci: string;
+  // public codigoBoleta: string;
 
   firma: any = '';
 
@@ -41,6 +49,12 @@ export class ColegioPage {
   }
 
   createPrompt( nombre, ci, codigoBoleta ) {
+
+    Global.nombre = nombre.value;
+    Global.ci = ci.value;
+    Global.codigoBoleta = codigoBoleta.value;
+
+    console.log(Global.nombre, Global.ci, Global.codigoBoleta);
 
     this.alertCtrl.create({
       header: 'Observaciones',

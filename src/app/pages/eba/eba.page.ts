@@ -2,17 +2,22 @@ import { Component, OnInit , ViewChild} from '@angular/core';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { AlertController } from '@ionic/angular';
 import {UserService} from '../../services/user.service';
+import { Injectable } from '@angular/core';
+
+import { Global } from '../global';
 
 @Component({
   selector: 'app-eba',
   templateUrl: './eba.page.html',
   styleUrls: ['./eba.page.scss'],
 })
+@Injectable()
 export class EbaPage {
+  global = Global;
 
   firma: any = '';
 
-  constructor( private alertCtrl: AlertController, private service: UserService ) { }
+  constructor( private alertCtrl: AlertController, private service: UserService,  ) { }
   //
   // ngOnInit() {
   // }
@@ -38,6 +43,9 @@ export class EbaPage {
   }
 
   createPrompt(codigoBoleta) {
+
+    console.log(Global.nombre, Global.ci, Global.codigoBoleta);
+
     this.alertCtrl.create({
       header: 'Observaciones',
       inputs: [{
