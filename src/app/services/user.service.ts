@@ -14,15 +14,15 @@ export class UserService {
 
   enviarFirmaColegio(body) {
     // console.log(body);
-    return this.http.post(`${this.url}/boleta/aplicacion-colegio`, body);
+    return this.http.patch(`${this.url}/boleta/aplicacion-colegio`, body);
   }
 
   eviarFirmaSiremu(body) {
-    return this.http.post(`${this.url}/boleta/aplicacion-eba`, body);
+    return this.http.patch(`${this.url}/boleta/aplicacion-eba`, body);
   }
 
   enviarFirmaEba(body) {
-    return this.http.post(`${this.url}/boleta/aplicacion-siremu`, body);
+    return this.http.patch(`${this.url}/boleta/aplicacion-siremu`, body);
   }
 
 }

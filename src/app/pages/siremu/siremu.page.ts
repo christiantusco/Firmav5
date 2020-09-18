@@ -34,44 +34,44 @@ export class SiremuPage {
   }
 
   drawComplete() {
-    console.log(this.signaturePad.toDataURL());
+    this.firma = this.signaturePad.toDataURL();
   }
 
   clear() {
     this.signaturePad.clear();
   }
 
-  createPrompt(codigoBoleta) {
-    this.alertCtrl.create({
-      header: 'Observaciones',
-      inputs: [{
-        placeholder: 'Ingrese sus observaciones',
-        name: 'text'
-      }],
-      buttons: [{
-        text: 'OK',
-        handler: (data) => {
-          this.enviarFirma(codigoBoleta.value, this.firma, data);
-        }
-      }, {
-        text: 'Cancel',
-        handler: () => {
-          // alert('User cancelled');
-        }
-      }
-      ]
-    }).then((promptElement) => {
-      promptElement.present();
-    });
-  }
+  // createPrompt(codigoBoleta) {
+  //   this.alertCtrl.create({
+  //     header: 'Observaciones',
+  //     inputs: [{
+  //       placeholder: 'Ingrese sus observaciones',
+  //       name: 'text'
+  //     }],
+  //     buttons: [{
+  //       text: 'OK',
+  //       handler: (data) => {
+  //         this.enviarFirma(codigoBoleta.value, this.firma, data);
+  //       }
+  //     }, {
+  //       text: 'Cancel',
+  //       handler: () => {
+  //         // alert('User cancelled');
+  //       }
+  //     }
+  //     ]
+  //   }).then((promptElement) => {
+  //     promptElement.present();
+  //   });
+  // }
 
-  enviarFirma(codigoBoleta, imagen, observaciones) {
+  enviarFirma(codigoBoleta) {
     let object = {
-      CodigoBoleta: codigoBoleta,
-      Imagen: imagen,
-      Observaciones: observaciones.text,
-      Fecha: new Date()
-    }
+      CodigoBoleta: this.global.codigoBoleta ,
+      Imagen: this.firma,
+    };
+
+    // console.log(object);
 
     this.service.eviarFirmaSiremu(object).subscribe(resp => {
       console.log('Respuesta: ', resp);

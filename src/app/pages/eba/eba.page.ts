@@ -35,55 +35,53 @@ export class EbaPage {
   }
 
   drawComplete() {
-    console.log(this.signaturePad.toDataURL());
+    // console.log(this.signaturePad.toDataURL());
+    this.firma = this.signaturePad.toDataURL();
   }
 
   clear() {
     this.signaturePad.clear();
   }
 
-  createPrompt(codigoBoleta) {
+  // createPrompt(codigoBoleta) {
+  //
+  //   // console.log(Global.nombre, Global.ci, Global.codigoBoleta);
+  //
+  //   this.alertCtrl.create({
+  //     header: 'Observaciones',
+  //     inputs: [{
+  //       placeholder: 'Ingrese sus observaciones',
+  //       name: 'text'
+  //     }],
+  //     buttons: [{
+  //       text: 'OK',
+  //       handler: (data) => {
+  //         this.enviarFirma(codigoBoleta.value, this.firma, data);
+  //       }
+  //     }, {
+  //       text: 'Cancel',
+  //       handler: () => {
+  //         // alert('User cancelled');
+  //       }
+  //     }
+  //     ]
+  //   }).then((promptElement) => {
+  //     promptElement.present();
+  //   });
+  // }
 
-    console.log(Global.nombre, Global.ci, Global.codigoBoleta);
-
-    this.alertCtrl.create({
-      header: 'Observaciones',
-      inputs: [{
-        placeholder: 'Ingrese sus observaciones',
-        name: 'text'
-      }],
-      buttons: [{
-        text: 'OK',
-        handler: (data) => {
-          this.enviarFirma(codigoBoleta.value, this.firma, data);
-        }
-      }, {
-        text: 'Cancel',
-        handler: () => {
-          // alert('User cancelled');
-        }
-      }
-      ]
-    }).then((promptElement) => {
-      promptElement.present();
-    });
-  }
-
-  enviarFirma(codigoBoleta, imagen, observaciones) {
-
-    // imagen = this.dataURItoBlob(imagen);
-    console.log(imagen);
+  enviarFirma(codigoBoleta) {
 
     let object = {
-      CodigoBoleta: codigoBoleta,
-      Imagen: imagen,
-      Observaciones: observaciones.text,
-      Fecha: new Date()
-    }
+      CodigoBoleta: this.global.codigoBoleta ,
+      Imagen: this.firma,
+    };
 
-    // this.service.enviarFirmaEba(object).subscribe(resp => {
-    //   console.log('Respuesta: ', resp );
-    // });
+    // console.log(object);
+
+    this.service.enviarFirmaEba(object).subscribe(resp => {
+      console.log('Respuesta: ', resp );
+    });
 
   }
 

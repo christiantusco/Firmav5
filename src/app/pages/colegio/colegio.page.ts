@@ -87,7 +87,9 @@ export class ColegioPage {
       Imagen: imagen,
       Observaciones: observaciones.text,
       Fecha: new Date()
-    }
+    };
+
+    // console.log(object);
 
     this.service.enviarFirmaColegio(object).subscribe(resp => {
       console.log('Respuesta: ', resp );
